@@ -98,12 +98,16 @@
 
       if (!firstRow) return;
       
-      // Track default sort indicator set directly in html (so it can be removed)
-      // enables indicating a default sort order without actually sorting
+      // Track default sort indicator set directly in html (independent of Tablesort), 
+      //   which visually indicates the default sort order without actually sorting
+      // Also wrap <th> text in a <span> for styling purposes
       [].slice.call(firstRow.cells).forEach(function(cell) {
         if (cell.classList.contains('sort-up') || cell.classList.contains('sort-down')) {
           that.current = cell;
         }
+        
+        text = cell.textContent || cell.innerText;
+        cell.innerHTML = '<span>' + text + '</span>';
       });
 
       var onClick = function() {
