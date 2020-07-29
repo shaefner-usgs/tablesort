@@ -1,0 +1,54 @@
+.sort-header {
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sort-header:hover {
+  color: #000;
+}
+.sort-header:hover span:after {
+  border-color: #000 transparent;
+}
+
+.sort-header:selection {
+  background: transparent;
+}
+
+.sort-header span {
+  position: relative;
+}
+
+.sort-header span:after,
+.sort-header span:before { /* default sort/hover arrows (up, opaque) */
+  border-color: #333 transparent;
+  border-style: solid;
+  border-width: 0 4px 4px;
+  content: '';
+  margin-top: 5px;
+  opacity: 1.0;
+  position: absolute;
+  right: -10px;
+  visibility: hidden;
+}
+.sort-header span:before { /* hover arrow (translucent) */
+  opacity: .25;
+}
+
+.sort-down span:after,
+.sort-up span:after,
+.sort-header:hover span:before {
+  visibility: visible;
+}
+
+.sort-up span:after,
+.sort-down span:before,
+[data-sort-order="desc"] span:before { /* flip sort/hover arrows (down) */
+  border-width: 4px 4px 0;
+  margin-top: 10px;
+}
+
+.sort-up span:before { /* flip hover arrow (up) - overrides [data-sort-order="desc"] */
+  border-width: 0 4px 4px;
+  margin-top: 5px;
+}
