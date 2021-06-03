@@ -1,0 +1,66 @@
+/*
+
+:after - arrow indicating current sort order
+:before - arrow indicating sort order after clicking (hover state)
+
+*/
+
+$hover-off-duration: .2s;
+$hover-on-duration: .05s;
+
+.sort-header {
+  color: #333;
+  cursor: pointer;
+  transition: color $hover-off-duration ease-in;
+  white-space: nowrap;
+
+  span {
+    position: relative;
+
+    &:after,
+    &:before { /* default arrow (pointing up, transparent) */
+      border-color: #333 transparent;
+      border-style: solid;
+      border-width: 0 4px 4px;
+      content: '';
+      margin-top: 5px;
+      opacity: 0;
+      position: absolute;
+      right: -10px;
+      transition: all $hover-off-duration ease-in;
+    }
+  }
+
+  &:hover {
+    color: #000;
+    transition: color $hover-on-duration ease-out;
+
+    span {
+      &:after {
+        border-color: #000 transparent;
+        transition: border-color $hover-on-duration ease-out;
+      }
+      &:before {
+        opacity: .25;
+        transition: opacity $hover-on-duration ease-out;
+      }
+    }
+  }
+}
+
+.sort-down span:after,
+.sort-up span:after {
+  opacity: 1.0;
+}
+
+.sort-up span:after,
+.sort-down span:before,
+[data-sort-order="desc"] span:before { /* down arrow */
+  border-width: 4px 4px 0;
+  margin-top: 10px;
+}
+
+.sort-up span:before { /* up arrow */
+  border-width: 0 4px 4px;
+  margin-top: 5px;
+}
