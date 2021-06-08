@@ -105,9 +105,8 @@
         if (cell.classList.contains('sort-up') || cell.classList.contains('sort-down')) {
           that.current = cell;
         }
-        
-        text = cell.textContent || cell.innerText;
-        cell.innerHTML = '<span>' + text + '</span>';
+
+        cell.innerHTML = '<span>' + cell.innerHTML + '</span>';
       });
 
       var onClick = function() {
